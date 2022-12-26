@@ -7,7 +7,37 @@
 10 09 08 07
 */
 
-int n = 4;
+int GetNumber(string messege)
+{
+    int resultat;
+    while (true)
+    {
+        Console.Write(messege);
+        if (int.TryParse(Console.ReadLine(), out resultat) && resultat > 0)
+        {
+            break;
+        }
+        else Console.WriteLine("Ввели не число");
+    }
+    return resultat;
+}
+
+void WriteArray (int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      if (array[i,j] / 10 <= 0)
+      Console.Write($"0{array[i,j]} ");
+
+      else Console.Write($"{array[i,j]} ");
+    }
+    Console.WriteLine();
+  }
+}
+
+int n = GetNumber("Введите расмер квадратнотго массива -> ");
 int[,] sqareMatrix = new int[n, n];
 
 int temp = 1;
@@ -30,17 +60,3 @@ while (temp <= sqareMatrix.GetLength(0) * sqareMatrix.GetLength(1))
 
 WriteArray(sqareMatrix);
 
-void WriteArray (int[,] array)
-{
-  for (int i = 0; i < array.GetLength(0); i++)
-  {
-    for (int j = 0; j < array.GetLength(1); j++)
-    {
-      if (array[i,j] / 10 <= 0)
-      Console.Write($"0{array[i,j]} ");
-
-      else Console.Write($"{array[i,j]} ");
-    }
-    Console.WriteLine();
-  }
-}
