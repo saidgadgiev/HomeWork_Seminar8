@@ -8,17 +8,31 @@
 18 20
 15 18
 */
+ 
+
+// int[,] matrixA = 
+// {
+//     {2, 4},
+//     {3, 2}
+// };
+
+// int[,] matrixB = 
+// {
+//     {3, 4},
+//     {3, 3}
+// };
 
 int[,] matrixA = 
 {
-    {2, 4},
-    {3, 2}
+    {2, 6, 0},
+    {1, 4, 3}
 };
 
 int[,] matrixB = 
 {
-    {3, 4},
-    {3, 3}
+    {4, -1},
+    {7,  5},
+    {8, -3}
 };
 
 void PrintMatrix (int[,] matrix)
@@ -36,19 +50,26 @@ void PrintMatrix (int[,] matrix)
 void ProizvMatrix (int[,] matrixA, int[,] mayrixB)
 {
     int[,] matrix = new int[matrixA.GetLength(0), matrixA.GetLength(1)];
-    int res = 0;
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++)
+        for (int j = 0; j < matrix.GetLength(0); j++)
         {
-            matrix[i, j] =  matrixA[i, j] * matrixB[i, j] + matrixA[i, j+1]*matrixB[i+1, j];
-            Console.WriteLine(matrix[i,j]);
+            int res = 0;
+            for (int k = 0; k < matrix.GetLength(1); k++)
+            {
+                res =  res + (matrixA[i, k] * matrixB[k, j]);
+            }
+            Console.Write(res + " ");
+            
         }
+        Console.WriteLine();
     }
 
 }
 Console.WriteLine("Матрица A:");
 PrintMatrix(matrixA);
 Console.WriteLine("Матрица B:");
+
 PrintMatrix(matrixB);
+Console.WriteLine("Произведение двух матриц: ->");
 ProizvMatrix(matrixA, matrixB);
