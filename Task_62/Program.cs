@@ -37,26 +37,41 @@ void WriteArray (int[,] array)
   }
 }
 
-int n = GetNumber("Введите расмер квадратнотго массива -> ");
-int[,] sqareMatrix = new int[n, n];
-
-int temp = 1;
-int i = 0;
-int j = 0;
-
-while (temp <= sqareMatrix.GetLength(0) * sqareMatrix.GetLength(1))
+int[,] SpiralMatrix(int n)
 {
-  sqareMatrix[i, j] = temp;
-  temp++;
-  if (i <= j + 1 && i + j < sqareMatrix.GetLength(1) - 1)
-    j++;
-  else if (i < j && i + j >= sqareMatrix.GetLength(0) - 1)
-    i++;
-  else if (i >= j && i + j > sqareMatrix.GetLength(1) - 1)
-    j--;
-  else
-    i--;
+    int[,] sqareMatrix = new int[n, n];
+
+    int temp = 1;
+    int i = 0;
+    int j = 0;
+
+    while (temp <= sqareMatrix.GetLength(0) * sqareMatrix.GetLength(1))
+    {
+        sqareMatrix[i, j] = temp;
+        temp++;
+        if (i <= j + 1 && i + j < sqareMatrix.GetLength(1) - 1)
+        {
+            j++;
+        }
+        else 
+        if (i < j && i + j >= sqareMatrix.GetLength(0) - 1)
+        {
+            i++;
+        }
+        else 
+        if (i >= j && i + j > sqareMatrix.GetLength(1) - 1)
+        {
+            j--;
+        }
+        else
+        {
+            i--;
+        }
+    }
+    return sqareMatrix;    
 }
 
-WriteArray(sqareMatrix);
+int n = GetNumber("Введите расмер квадратнотго массива -> ");
+
+WriteArray(SpiralMatrix(n));
 
